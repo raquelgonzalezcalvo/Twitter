@@ -3,8 +3,17 @@ import "../styles/App.scss";
 //images
 import adalabLogo from "../images/adalab-logo.png";
 import adalabBanner from "../images/adalab-banner.jpg";
+import { useState } from "react";
 
 function App() {
+  //variables
+
+  const [composeOpen, setComposeOpen] = useState(false);
+
+  function handleCompose() {
+    setComposeOpen(!composeOpen);
+    console.log(composeOpen);
+  }
   return (
     <div className="page">
       <header className="header">
@@ -35,9 +44,14 @@ function App() {
             </li>
 
             <li className="menu__item menu__item--tweet">
-              <a className="menu__link" href="#" title="Twittear">
+              <button
+                className="menu__link"
+                href="#"
+                title="Twittear"
+                onClick={handleCompose}
+              >
                 <span className="text">Twittear</span>
-              </a>
+              </button>
             </li>
           </ul>
         </nav>

@@ -17,7 +17,7 @@
     background-color: white;
     background-repeat: no-repeat;
     background-position: center center;
-    // transition: background 0.3s;
+    transition: background 0.3s;
 
     &:hover {
       background-color: $color-blue-light;
