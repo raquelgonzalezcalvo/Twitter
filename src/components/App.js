@@ -1,5 +1,9 @@
 import "../styles/App.scss";
 
+//images
+import adalabLogo from "../images/adalab-logo.png";
+import adalabBanner from "../images/adalab-banner.jpg";
+
 function App() {
   return (
     <div className="page">
@@ -39,38 +43,32 @@ function App() {
         </nav>
       </header>
 
-      <main class="main">
-        <section class="main__header">
+      <main className="main">
+        <section className="main__header">
           <header>
-            <h1 class="header__title">
-              <span class="header__account">Adalab</span>
-              <span class="header__tweets">6.762 Tweets</span>
+            <h1 className="header__title">
+              <span className="header__account">Adalab</span>
+              <span className="header__tweets">6.762 Tweets</span>
             </h1>
 
-            <img
-              src="./assets/images/adalab-banner.jpg"
-              alt="Banner de Adalab"
-            />
+            <img src={adalabBanner} alt="Banner de Adalab" />
 
-            <div class="header__content">
-              <div class="header__profile-image">
-                <img
-                  src="./assets/images/adalab-logo.png"
-                  alt="Imagen de perfil de Adalab"
-                />
+            <div className="header__content">
+              <div className="header__profile-image">
+                <img src={adalabLogo} alt="Imagen de perfil de Adalab" />
               </div>
 
-              <div class="header__actions">
-                <button class="header__follow-btn">Siguiendo</button>
+              <div className="header__actions">
+                <button className="header__follow-btn">Siguiendo</button>
               </div>
 
-              <div class="header__account-info">
-                <span class="header__acount-title">Adalab</span>
-                <span class="header__acount-username">@Adalab_Digital</span>
-                <span class="header__acount-follow">Te sigue</span>
+              <div className="header__account-info">
+                <span className="header__acount-title">Adalab</span>
+                <span className="header__acount-username">@Adalab_Digital</span>
+                <span className="header__acount-follow">Te sigue</span>
               </div>
 
-              <h2 class="header__account-description">
+              <h2 className="header__account-description">
                 👩‍💻 Tecnóloga mujer Escuela de programación web para mujeres.{" "}
                 <br />
                 📅 Calendario espiralado Próximo curso: noviembre 2021. <br />
@@ -79,24 +77,26 @@ function App() {
                 🚀 Aprende a programar en solo 12 semanas.
               </h2>
 
-              <div class="header__account-data">
-                <span class="header__account-region">
+              <div className="header__account-data">
+                <span className="header__account-region">
                   Madrid, Comunidad de Madrid
                 </span>
-                <a class="header__account-link" href="https://adalab.es">
+                <a className="header__account-link" href="https://adalab.es">
                   adalab.es
                 </a>
-                <span class="header__account-date">
+                <span className="header__account-date">
                   Se unió en agosto de 2016
                 </span>
               </div>
 
-              <div class="header__followers-info">
-                <span class="header__following">
-                  <span class="header__followers-number">1.908</span> Siguiendo
+              <div className="header__followers-info">
+                <span className="header__following">
+                  <span className="header__followers-number">1.908</span>{" "}
+                  Siguiendo
                 </span>
-                <span class="header__followers">
-                  <span class="header__followers-number">5.601</span> Seguidores
+                <span className="header__followers">
+                  <span className="header__followers-number">5.601</span>{" "}
+                  Seguidores
                 </span>
               </div>
             </div>
