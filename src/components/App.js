@@ -3,47 +3,65 @@ import "../styles/App.scss";
 //images
 import adalabLogo from "../images/adalab-logo.png";
 import adalabBanner from "../images/adalab-banner.jpg";
+import tweets from "../data/tweets.json";
 import { useState } from "react";
 
 function App() {
   //variables
 
   const [composeOpen, setComposeOpen] = useState(false);
+  const [composeText, setComposeText] = useState("");
 
   function handleCompose() {
     setComposeOpen(!composeOpen);
     console.log(composeOpen);
   }
+  const handleComposeText = (ev) => {
+    console.log("has escrito algo");
+    setComposeText(ev.target.value);
+  };
+
+  const handleComposeSubmit = (ev) => {
+    ev.preventDefault();
+  };
   const renderComposeModal = () => {
+    const isButtonDisabled = composeText.length === 0;
     if (composeOpen === true) {
       return (
         <div className="compose__modal-overlay">
-          <div className="compose__modal-wrapper">
-            <div className="compose__modal-header">
-              <button
-                className="compose__modal-close-btn"
-                onClick={handleCompose}
-              >
-                Cerrar
-              </button>
+          <form onSubmit={handleComposeSubmit}>
+            <div className="compose__modal-wrapper">
+              <div className="compose__modal-header">
+                <button
+                  className="compose__modal-close-btn"
+                  onClick={handleCompose}
+                >
+                  Cerrar
+                </button>
+              </div>
+              <div className="compose__modal-content">
+                <img
+                  className="compose__profile-logo"
+                  src={adalabLogo}
+                  alt="Logo de Adalab"
+                />
+                <textarea
+                  className="compose__profile-textarea"
+                  placeholder="¿Qué está pasando?"
+                  value={composeText}
+                  onChange={handleComposeText}
+                />
+              </div>
+              <div className="compose__modal-footer">
+                <button
+                  className="compose__modal-tweet-btn"
+                  disabled={isButtonDisabled}
+                >
+                  Twittear
+                </button>
+              </div>
             </div>
-            <div className="compose__modal-content">
-              <img
-                className="compose__profile-logo"
-                src={adalabLogo}
-                alt="Logo de Adalab"
-              />
-              <textarea
-                className="compose__profile-textarea"
-                placeholder="¿Qué está pasando?"
-              />
-            </div>
-            <div className="compose__modal-footer">
-              <button className="compose__modal-tweet-btn" disabled>
-                Twittear
-              </button>
-            </div>
-          </div>
+          </form>
         </div>
       );
     }
@@ -155,11 +173,19 @@ function App() {
       </header>
     );
   };
+  const renderTweets = () => {
+    return tweets.map((tweet) => {
+      return <li></li>;
+    });
+  };
   return (
     <div className="page">
       {renderHeader()}
       <main className="main">
-        {renderMainHeader()} {renderComposeModal()}
+        {renderMainHeader()}
+        <ul></ul>
+        {renderComposeModal()}
+        {renderTweets()}
       </main>
     </div>
   );
