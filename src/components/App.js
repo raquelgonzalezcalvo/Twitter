@@ -14,6 +14,40 @@ function App() {
     setComposeOpen(!composeOpen);
     console.log(composeOpen);
   }
+  const renderComposeModal = () => {
+    if (composeOpen === true) {
+      return (
+        <div className="compose__modal-overlay">
+          <div className="compose__modal-wrapper">
+            <div className="compose__modal-header">
+              <button
+                className="compose__modal-close-btn"
+                onClick={handleCompose}
+              >
+                Cerrar
+              </button>
+            </div>
+            <div className="compose__modal-content">
+              <img
+                className="compose__profile-logo"
+                src={adalabLogo}
+                alt="Logo de Adalab"
+              />
+              <textarea
+                className="compose__profile-textarea"
+                placeholder="¿Qué está pasando?"
+              />
+            </div>
+            <div className="compose__modal-footer">
+              <button className="compose__modal-tweet-btn" disabled>
+                Twittear
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
   return (
     <div className="page">
       <header className="header">
@@ -116,6 +150,7 @@ function App() {
             </div>
           </header>
         </section>
+        {renderComposeModal()}
       </main>
     </div>
   );
