@@ -3,7 +3,6 @@ import "../styles/App.scss";
 //images
 import adalabLogo from "../images/adalab-logo.png";
 import adalabBanner from "../images/adalab-banner.jpg";
-import pepita from "../images/user-5.jpg";
 import tweets from "../data/tweets.json";
 import { useState } from "react";
 
@@ -174,12 +173,13 @@ function App() {
       </header>
     );
   };
+
   const renderTweets = () => {
     return tweets.map((tweet) => {
       return (
         <li key={tweet.id}>
           <article className="tweet__wrapper">
-            <img className="tweet__avatar" src={pepita} alt="photo" />
+            <img className="tweet__avatar" src={tweet.avatar} alt={`Avatar de ${tweet.user}`} />
             <div className="tweet__content">
               <p className="tweet__info">
                 <span className="tweet__user">{tweet.user}</span>
@@ -206,9 +206,8 @@ function App() {
       {renderHeader()}
       <main className="main">
         {renderMainHeader()}
-        <ul></ul>
+        <ul>{renderTweets()}</ul>
         {renderComposeModal()}
-        {renderTweets()}
       </main>
     </div>
   );
