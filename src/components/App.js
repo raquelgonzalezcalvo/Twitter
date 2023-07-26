@@ -1,17 +1,23 @@
 import "../styles/App.scss";
+import getTweets from "../services/api";
 
 //images
 import adalabLogo from "../images/adalab-logo.png";
 import adalabBanner from "../images/adalab-banner.jpg";
-import tweetsData from "../data/tweets.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   //variables
 
   const [composeOpen, setComposeOpen] = useState(false);
   const [composeText, setComposeText] = useState("");
-  const [tweets, setTweets] = useState(tweetsData);
+  const [tweets, setTweets] = useState([]);
+
+  useEffect(() => {
+    getTweets().then((data) => {
+      setTweets(data);
+    });
+  }, []);
 
   function handleCompose() {
     setComposeOpen(!composeOpen);
@@ -24,7 +30,7 @@ function App() {
 
   const handleComposeSubmit = (ev) => {
     ev.preventDefault();
-    tweets.push({
+    tweets.unshift({
       id: "dsgfdsjfg",
       avatar: "http://localhost:3000/assets/avatars/user-4.jpg",
       user: "Adalab",
