@@ -3,7 +3,7 @@ import "../styles/App.scss";
 //images
 import adalabLogo from "../images/adalab-logo.png";
 import adalabBanner from "../images/adalab-banner.jpg";
-import tweets from "../data/tweets.json";
+import tweetsData from "../data/tweets.json";
 import { useState } from "react";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
 
   const [composeOpen, setComposeOpen] = useState(false);
   const [composeText, setComposeText] = useState("");
+  const [tweets, setTweets] = useState(tweetsData);
 
   function handleCompose() {
     setComposeOpen(!composeOpen);
@@ -23,6 +24,20 @@ function App() {
 
   const handleComposeSubmit = (ev) => {
     ev.preventDefault();
+    tweets.push({
+      id: "dsgfdsjfg",
+      avatar: "http://localhost:3000/assets/avatars/user-4.jpg",
+      user: "Adalab",
+      username: "Adalab_digital",
+      date: "8 sep. 2021",
+      text: composeText,
+      comments: 0,
+      retweets: 0,
+      likes: 0,
+    });
+    setTweets([...tweets]);
+    setComposeOpen(false);
+    setComposeText("");
   };
   const renderComposeModal = () => {
     const isButtonDisabled = composeText.length === 0;
@@ -179,7 +194,11 @@ function App() {
       return (
         <li key={tweet.id}>
           <article className="tweet__wrapper">
-            <img className="tweet__avatar" src={tweet.avatar} alt={`Avatar de ${tweet.user}`} />
+            <img
+              className="tweet__avatar"
+              src={tweet.avatar}
+              alt={`Avatar de ${tweet.user}`}
+            />
             <div className="tweet__content">
               <p className="tweet__info">
                 <span className="tweet__user">{tweet.user}</span>
