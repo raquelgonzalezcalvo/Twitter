@@ -1,5 +1,6 @@
 import "../styles/App.scss";
 import getTweets from "../services/api";
+import ls from "../services/ls";
 
 //images
 import adalabLogo from "../images/adalab-logo.png";
@@ -10,8 +11,12 @@ function App() {
   //variables
 
   const [composeOpen, setComposeOpen] = useState(false);
-  const [composeText, setComposeText] = useState("");
+  const [composeText, setComposeText] = useState(ls.get("composeText", ""));
   const [tweets, setTweets] = useState([]);
+
+  useEffect(() => {
+    ls.set("composeText", composeText);
+  }, [composeText]);
 
   useEffect(() => {
     getTweets().then((data) => {
