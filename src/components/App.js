@@ -104,27 +104,14 @@ function App() {
               href="/home"
               liClass="twitter"
             />
-            <li className="menu__item menu__item--twitter">
-              <a className="menu__link" href="#" title="Ir"></a>
-            </li>
-
-            <li className="menu__item menu__item--home">
-              <a className="menu__link" href="#" title="Ir">
-                <span className="text">Ir al inicio</span>
-              </a>
-            </li>
-
-            <li className="menu__item menu__item--search">
-              <a className="menu__link" href="#" title="Buscar">
-                <span className="text">Buscar</span>
-              </a>
-            </li>
-
-            <li className="menu__item menu__item--profile">
-              <a className="menu__link" href="#" title="Perfil">
-                <span className="text">Perfil</span>
-              </a>
-            </li>
+            <HeaderMenuItem text="Ir al inicio" href="/home" liClass="home" />
+            <HeaderMenuItem text="Buscar" href="/search" liClass="search" />
+            <HeaderMenuItem
+              text="Perfil"
+              href="/profile"
+              liClass="profile
+            "
+            />
 
             <li className="menu__item menu__item--tweet">
               <button
