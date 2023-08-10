@@ -2,6 +2,7 @@ import "../styles/App.scss";
 import getTweets from "../services/api";
 import ls from "../services/ls";
 import MainHeader from "./MainHeader";
+import HeaderMenuItem from "./HeaderMenuItem";
 
 //images
 import adalabLogo from "../images/adalab-logo.png";
@@ -98,10 +99,13 @@ function App() {
       <header className="header">
         <nav className="menu">
           <ul className="menu__items">
+            <HeaderMenuItem
+              text="Ir al inicio"
+              href="/home"
+              liClass="twitter"
+            />
             <li className="menu__item menu__item--twitter">
-              <a className="menu__link" href="#" title="Ir">
-                <span className="text">Ir al inicio</span>
-              </a>
+              <a className="menu__link" href="#" title="Ir"></a>
             </li>
 
             <li className="menu__item menu__item--home">
