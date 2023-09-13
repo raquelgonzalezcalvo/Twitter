@@ -1,3 +1,4 @@
+import "../styles/layout/HeaderMenuItem.scss";
 const HeaderMenuItem = ({ text, href, liClass }) => {
   return (
     <li className={`menu__item menu__item--${liClass}`}>

@@ -1,16 +1,13 @@
 import "../styles/App.scss";
 import getTweets from "../services/api";
 import ls from "../services/ls";
-import MainHeader from "./MainHeader";
-import HeaderMenuItem from "./HeaderMenuItem";
+import Profile from "./Profile";
 
 //images
-import adalabLogo from "../images/adalab-logo.png";
 import { useState, useEffect } from "react";
-import Tweet from "./Tweet";
-import HeaderMenuButton from "./HeaderMenuButton";
 import Header from "./Header";
 import ComposeModal from "./ComposeModal";
+import Tweets from "./Tweets";
 
 function App() {
   //variables
@@ -67,17 +64,12 @@ function App() {
     }
   };
 
-  const renderTweets = () => {
-    return tweets.map((tweet) => {
-      return <Tweet tweet={tweet} key={tweet.id} />;
-    });
-  };
   return (
     <div className="page">
       <Header handleCompose={handleCompose} />
       <main className="main">
-        <MainHeader />
-        <ul>{renderTweets()}</ul>
+        <Profile />
+        <Tweets tweets={tweets} />
         {renderComposeModal()}
       </main>
     </div>

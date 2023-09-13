@@ -1,8 +1,10 @@
-@import "core/variables";
 @import "core/reset";
-@import "layout/page";
-@import "layout/header";
-@import "layout/main";
-@import "layout/compose";
-@import "layout/tweet";
-@import "layout/MainHeader";
+.page {
+  display: flex;
+  justify-content: center;
+}
+.main {
+  width: 37.5rem;
+  border-left: solid 1px #eee;
+  border-right: solid 1px #eee;
+}

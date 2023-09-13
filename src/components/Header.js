@@ -1,3 +1,4 @@
+import "../styles/layout/Header.scss";
 import HeaderMenuButton from "./HeaderMenuButton";
 import HeaderMenuItem from "./HeaderMenuItem";
 const Header = ({ handleCompose }) => {

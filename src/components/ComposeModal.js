@@ -1,3 +1,4 @@
+import "../styles/layout/ComposeModal.scss";
 import adalabLogo from "../images/adalab-logo.png";
 
 const ComposeModal = ({

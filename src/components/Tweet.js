@@ -1,3 +1,5 @@
+import "../styles/layout/Tweet.scss";
+
 const Tweet = ({ tweet }) => {
   return (
     <li>
