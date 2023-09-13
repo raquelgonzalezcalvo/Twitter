@@ -1,17 +1,20 @@
-import "../styles/App.scss";
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+//services
 import getTweets from "../services/api";
 import ls from "../services/ls";
+//components
 import Profile from "./Profile";
-
-//images
-import { useState, useEffect } from "react";
 import Header from "./Header";
 import ComposeModal from "./ComposeModal";
 import Tweets from "./Tweets";
+import Search from "./Search";
+import Home from "./Home";
+//styles
+import "../styles/App.scss";
 
 function App() {
   //variables
-
   const [composeOpen, setComposeOpen] = useState(false);
   const [composeText, setComposeText] = useState(ls.get("composeText", ""));
   const [tweets, setTweets] = useState([]);
@@ -64,16 +67,22 @@ function App() {
     }
   };
 
-  return (
-    <div className="page">
-      <Header handleCompose={handleCompose} />
-      <main className="main">
-        <Profile />
-        <Tweets tweets={tweets} />
-        {renderComposeModal()}
-      </main>
-    </div>
-  );
+   return (
+     <div className="page">
+    {/*    <Router> */}
+         <Header handleCompose={handleCompose} />
+         <main className="main">
+           <Routes>
+             <Route path="/" element={<Home />} />
+             <Route path="/search" element={<Search />} />
+             <Route path="/profile" element={<Profile />} />
+           </Routes>
+           <Tweets tweets={tweets} />
+           {renderComposeModal()}
+         </main>
+      {/*  </Router> */}
+     </div>
+   );
 }
 
 export default App;
