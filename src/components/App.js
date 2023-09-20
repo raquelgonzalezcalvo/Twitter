@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+
 //services
 import getTweets from "../services/api";
 import ls from "../services/ls";
@@ -10,6 +11,7 @@ import ComposeModal from "./ComposeModal";
 import Tweets from "./Tweets";
 import Search from "./Search";
 import Home from "./Home";
+import TweetDetail from "./TweetDetail";
 //styles
 import "../styles/App.scss";
 
@@ -66,23 +68,48 @@ function App() {
       );
     }
   };
+  const routeTweetData = useRouteMatch("/tweet/:tweetId");
 
-   return (
-     <div className="page">
-    {/*    <Router> */}
-         <Header handleCompose={handleCompose} />
-         <main className="main">
-           <Routes>
-             <Route path="/" element={<Home />} />
-             <Route path="/search" element={<Search />} />
-             <Route path="/profile" element={<Profile />} />
-           </Routes>
-           <Tweets tweets={tweets} />
-           {renderComposeModal()}
-         </main>
-      {/*  </Router> */}
-     </div>
-   );
+  const getRouteTweet = () => {
+    if (routeTweetData) {
+      const routeTweetId = routeTweetData.params.tweetId;
+      const routeTweet = tweets.find((tweet) => {
+        return tweet.id === routeTweetId;
+      });
+      if (routeTweet) {
+        return routeTweet;
+      } else {
+        return {};
+      }
+    }
+  };
+
+  return (
+    <div className="page">
+      <Header handleCompose={handleCompose} />
+      <main className="main">
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+            <Tweets tweets={tweets} />
+          </Route>
+          <Route path="/search">
+            <Search />
+            <Tweets tweets={tweets} />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+            <Tweets tweets={tweets} />
+          </Route>
+          <Route path="/tweet/:tweetId">
+            <TweetDetail tweet={getRouteTweet()} />
+          </Route>
+        </Switch>
+
+        {renderComposeModal()}
+      </main>
+    </div>
+  );
 }
 
 export default App;

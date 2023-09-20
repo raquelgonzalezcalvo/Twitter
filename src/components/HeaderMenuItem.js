@@ -1,10 +1,12 @@
+import { NavLink } from "react-router-dom";
+
 import "../styles/layout/HeaderMenuItem.scss";
 const HeaderMenuItem = ({ text, href, liClass }) => {
   return (
     <li className={`menu__item menu__item--${liClass}`}>
-      <a className="menu__link" href={href} title={text}>
+      <NavLink className="menu__link" to={href} title={text}>
         <span className="text">{text}</span>
-      </a>
+      </NavLink>
     </li>
   );
 };
