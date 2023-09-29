@@ -4,6 +4,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 //services
 import getTweets from "../services/api";
 import ls from "../services/ls";
+import date from "../services/date";
 //components
 import Profile from "./Profile";
 import Header from "./Header";
@@ -12,6 +13,7 @@ import Tweets from "./Tweets";
 import Search from "./Search";
 import Home from "./Home";
 import TweetDetail from "./TweetDetail";
+import Loader from "./Loader";
 //styles
 import "../styles/App.scss";
 
@@ -20,13 +22,17 @@ function App() {
   const [composeOpen, setComposeOpen] = useState(false);
   const [composeText, setComposeText] = useState(ls.get("composeText", ""));
   const [tweets, setTweets] = useState([]);
+  const [showLoading, setShowLoading] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     ls.set("composeText", composeText);
   }, [composeText]);
 
   useEffect(() => {
+    setShowLoading(true);
     getTweets().then((data) => {
+      setShowLoading(false);
       setTweets(data);
     });
   }, []);
@@ -42,11 +48,11 @@ function App() {
 
   const handleComposeSubmit = () => {
     tweets.unshift({
-      id: "dsgfdsjfg",
+      id: crypto.randomUUID(),
       avatar: "http://localhost:3000/assets/avatars/user-4.jpg",
       user: "Adalab",
       username: "Adalab_digital",
-      date: "8 sep. 2021",
+      date: date.getCurrentDate(),
       text: composeText,
       comments: 0,
       retweets: 0,
@@ -55,6 +61,10 @@ function App() {
     setTweets([...tweets]);
     setComposeOpen(false);
     setComposeText("");
+  };
+
+  const handleSearchText = (searchText) => {
+    setSearchText(searchText);
   };
   const renderComposeModal = () => {
     if (composeOpen === true) {
@@ -67,6 +77,15 @@ function App() {
         />
       );
     }
+  };
+
+  const getFilterTweets = () => {
+    return tweets.filter((tweet) => {
+      return (
+        tweet.text.toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+        tweet.user.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
+      );
+    });
   };
   const routeTweetData = useRouteMatch("/tweet/:tweetId");
 
@@ -94,8 +113,11 @@ function App() {
             <Tweets tweets={tweets} />
           </Route>
           <Route path="/search">
-            <Search />
-            <Tweets tweets={tweets} />
+            <Search
+              searchText={searchText}
+              handleSearchText={handleSearchText}
+            />
+            <Tweets tweets={getFilterTweets()} />
           </Route>
           <Route path="/profile">
             <Profile />
@@ -108,6 +130,7 @@ function App() {
 
         {renderComposeModal()}
       </main>
+      <Loader showLoading={showLoading} />
     </div>
   );
 }

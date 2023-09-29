@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 import "../styles/layout/TweetDetail.scss";
 const TweetDetail = ({ tweet }) => {
+  const handleBackButton = () => {
+    window.history.back();
+  };
   return (
     <section className="tweet-detail">
       <header className="tweet-detail__header">
-        <Link className="tweet-detail__back-btn" to="/">
+        <button
+          className="tweet-detail__back-btn"
+          onClick={handleBackButton}
+          to="/"
+        >
           <span>Volver atrás</span>
-        </Link>
+        </button>
         <h2 className="tweet-detail__header-title">Tweet</h2>
       </header>
       <article className="tweet-detail__content">

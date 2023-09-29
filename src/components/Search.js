@@ -1,6 +1,9 @@
 import "../styles/layout/Search.scss";
 
-const Search = () => {
+const Search = ({ searchText, handleSearchText }) => {
+  const handleSearchInput = (ev) => {
+    handleSearchText(ev.target.value);
+  };
   return (
     <form className="search">
       <input
@@ -9,6 +12,7 @@ const Search = () => {
         name="search"
         id="search"
         placeholder="Buscar en Twitter"
+        onChange={handleSearchInput}
       />
     </form>
   );
