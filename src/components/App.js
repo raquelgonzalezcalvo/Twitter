@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 
 //services
-import getTweets from "../services/api";
+import api from "../services/api";
 import ls from "../services/ls";
 import date from "../services/date";
 //components
@@ -24,6 +24,7 @@ function App() {
   const [tweets, setTweets] = useState([]);
   const [showLoading, setShowLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     ls.set("composeText", composeText);
@@ -31,9 +32,16 @@ function App() {
 
   useEffect(() => {
     setShowLoading(true);
-    getTweets().then((data) => {
+    api.getTweets().then((data) => {
       setShowLoading(false);
       setTweets(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    setShowLoading(true);
+    api.getProfile().then((data) => {
+      setProfile(data);
     });
   }, []);
 
@@ -120,7 +128,7 @@ function App() {
             <Tweets tweets={getFilterTweets()} />
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile profile={profile} />
             <Tweets tweets={tweets} />
           </Route>
           <Route path="/tweet/:tweetId">
