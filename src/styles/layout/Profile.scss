@@ -64,6 +64,10 @@
       font-size: 15px;
       font-weight: 700;
       color: #536471;
+      &:hover {
+        // background-color: #e74c3c;
+        color: red;
+      }
     }
 
     &__account-info {

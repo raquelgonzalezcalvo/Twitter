@@ -1,6 +1,6 @@
 import "../styles/layout/Profile.scss";
 
-const Profile = ({ profile }) => {
+const Profile = ({ profile, follow, setFollow }) => {
   const parseDescription = () => {
     if (profile.description) {
       const descriptionwithbreaklines = profile.description.replace(
@@ -10,7 +10,13 @@ const Profile = ({ profile }) => {
       return { __html: descriptionwithbreaklines };
     }
   };
+  const handleMouseOver = () => {
+    setFollow(false);
+  };
 
+  const handleMouseOut = () => {
+    setFollow(true);
+  };
   return (
     <section className="main__header">
       <header>
@@ -30,7 +36,15 @@ const Profile = ({ profile }) => {
           </div>
 
           <div className="header__actions">
-            <button className="header__follow-btn">Siguiendo</button>
+            <button
+              className={`header__follow-btn ${
+                setFollow ? "siguiendo" : "dejarDeSeguir"
+              }`}
+              onMouseOver={handleMouseOver}
+              onMouseOut={handleMouseOut}
+            >
+              {follow ? "Siguiendo" : "Dejar de seguir"}
+            </button>
           </div>
 
           <div className="header__account-info">

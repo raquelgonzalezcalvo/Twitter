@@ -25,6 +25,7 @@ function App() {
   const [showLoading, setShowLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [profile, setProfile] = useState({});
+  const [follow, setFollow] = useState(true);
 
   useEffect(() => {
     ls.set("composeText", composeText);
@@ -128,7 +129,7 @@ function App() {
             <Tweets tweets={getFilterTweets()} />
           </Route>
           <Route path="/profile">
-            <Profile profile={profile} />
+            <Profile profile={profile} follow={follow} setFollow={setFollow} />
             <Tweets tweets={tweets} />
           </Route>
           <Route path="/tweet/:tweetId">
