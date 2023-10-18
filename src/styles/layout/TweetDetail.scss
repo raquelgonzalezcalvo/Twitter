@@ -1,4 +1,4 @@
-@import "../core/variables.scss";
+@import '../core/variables.scss';
 
 .tweet-detail {
   &__back-btn {
@@ -8,7 +8,7 @@
     height: 2.125rem;
     border-radius: 50%;
     border: none;
-    background-image: url("../../images/icon-arrow-left.png");
+    background-image: url('../../images/icon-arrow-left.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-color: transparent;
@@ -30,6 +30,9 @@
     align-items: center;
     height: 3.3125rem;
     border-bottom: 1px solid $border;
+    > * {
+      display: block;
+    }
   }
 
   &__header-title {
@@ -68,6 +71,12 @@
 
   &__text {
     font-size: 1.4375rem;
+  }
+
+  &__error {
+    padding: 3rem;
+    font-size: 1.4375rem;
+    text-align: center;
   }
 
   &__date {

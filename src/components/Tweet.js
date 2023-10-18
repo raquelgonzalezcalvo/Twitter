@@ -19,10 +19,20 @@ const Tweet = ({ tweet }) => {
             </p>
             <p className="tweet__text">{tweet.text}</p>
             <ul className="tweet__actions">
-              <li className="tweet__comments">{tweet.comments}</li>
-              <li className="tweet__retweets">{tweet.retweets}</li>
-              <li className="tweet__likes">{tweet.likes}</li>
+              <li className="tweet__comments">
+                <i class="fa-regular fa-comment"></i>
+                {tweet.comments}
+              </li>
+              <li className="tweet__retweets">
+                <i className="fa-solid fa-retweet"></i>
+                {tweet.retweets}
+              </li>
+              <li className="tweet__likes">
+                <i className="fa-regular fa-heart"></i>
+                {tweet.likes}
+              </li>
               <li className="tweet__share">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
                 <span className="tweet__share--text">Compartir</span>
               </li>
             </ul>
