@@ -6,8 +6,8 @@ const Header = ({ handleCompose }) => {
     <header className="header">
       <nav className="menu">
         <ul className="menu__items">
-          <HeaderMenuItem text="Ir al inicio" href="/home" liClass="twitter" />
-          <HeaderMenuItem text="Ir al inicio" href="/home" liClass="home" />
+          <HeaderMenuItem text="Ir al inicio" href="/" liClass="twitter" />
+          <HeaderMenuItem text="Ir al inicio" href="/" liClass="home" />
           <HeaderMenuItem text="Buscar" href="/search" liClass="search" />
           <HeaderMenuItem
             text="Perfil"
